@@ -10,17 +10,17 @@ export class ArticleService {
     @InjectModel('Article') private readonly articleModel: Model<Article>,
   ) {}
 
-  async getArticles() {
+  public async getArticles() {
     const res = await this.articleModel.find();
     return res;
   }
 
-  async getArticleByID(id: string) {
+  public async getArticleByID(id: string) {
     const res = await this.articleModel.findById(id);
     return res;
   }
 
-  async createArticle(articleInfo: ArticleInfoDto) {
+  public async createArticle(articleInfo: ArticleInfoDto) {
     const res = await this.articleModel.create(articleInfo);
     return (
       res && {
@@ -29,7 +29,7 @@ export class ArticleService {
     );
   }
 
-  async updateArticle(id: string, articleInfo: ArticleInfoDto) {
+  public async updateArticle(id: string, articleInfo: ArticleInfoDto) {
     const res = await this.articleModel.findByIdAndUpdate(id, articleInfo);
     return (
       res && {
@@ -38,7 +38,7 @@ export class ArticleService {
     );
   }
 
-  async deleteArticle(id: string) {
+  public async deleteArticle(id: string) {
     const res = await this.articleModel.findByIdAndRemove(id);
     return res && { success: true };
   }
