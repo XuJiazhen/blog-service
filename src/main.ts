@@ -6,10 +6,10 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // 使用全局 Pipes 进行验证
+  // use global pipes to validate
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
-  // 配置 Swagger-UI
+  // config swagger-ui
   const options = new DocumentBuilder()
     .setTitle('Blog API Docs.')
     .setDescription('The Blog API description.')
@@ -17,6 +17,10 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
+
+  app.enableCors({
+    credentials: true,
+  });
 
   await app.listen(3000);
 }
