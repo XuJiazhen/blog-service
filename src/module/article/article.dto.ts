@@ -9,19 +9,33 @@ export class ArticleInfoDto {
   })
   title: string;
 
+  // @IsString()
+  // @ApiProperty({
+  //   description: 'Article keyword.',
+  //   example: 'Nest.js.',
+  // })
+  // keyword: string;
+
   @IsString()
   @ApiProperty({
-    description: 'Article keyword.',
-    example: 'Nest.js.',
+    description: 'Author.',
+    example: 'XuJiazhen.',
   })
-  keyword: string;
+  author: string;
+
+  @IsString()
+  @ApiProperty({
+    description: 'Date.',
+    example: String(new Date().getTime()),
+  })
+  date: string;
 
   @IsString()
   @ApiProperty({
     description: 'Article introduction.',
     example: 'Powered by Node.js + Nest.js + MongoDB + Mongoose.',
   })
-  introduction: string;
+  summary: string;
 
   @IsString()
   @ApiProperty({
@@ -30,7 +44,7 @@ export class ArticleInfoDto {
   })
   content: string;
 
-  metadata: ArticleMetadataDto;
+  // metadata: ArticleMetadataDto;
 }
 
 export class ArticleMetadataDto {

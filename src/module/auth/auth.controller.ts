@@ -21,10 +21,7 @@ export class AuthController {
         // if the admin user exists and the password is correct
         // then give him a token
         const token = createToken({ username: adminInfo.username });
-        return {
-          token,
-          expireDate: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 3,
-        };
+        return { token };
       } else {
         throw new UnauthorizedException('Please enter the correct password.');
       }
