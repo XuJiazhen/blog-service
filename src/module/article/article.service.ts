@@ -11,7 +11,7 @@ export class ArticleService {
   ) {}
 
   public async getArticles() {
-    const res = await this.articleModel.find();
+    const res = await this.articleModel.find().sort({ releasedAt: -1 });
     return res;
   }
 

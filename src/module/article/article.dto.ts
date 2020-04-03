@@ -1,65 +1,22 @@
-import { IsString, IsNumber } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
-
+import { IsString, IsNotEmpty } from 'class-validator';
 export class ArticleInfoDto {
   @IsString()
-  @ApiProperty({
-    description: 'Article title.',
-    example: 'This is my first article',
-  })
   title: string;
 
-  // @IsString()
-  // @ApiProperty({
-  //   description: 'Article keyword.',
-  //   example: 'Nest.js.',
-  // })
-  // keyword: string;
-
   @IsString()
-  @ApiProperty({
-    description: 'Author.',
-    example: 'XuJiazhen.',
-  })
   author: string;
 
   @IsString()
-  @ApiProperty({
-    description: 'Date.',
-    example: String(new Date().getTime()),
-  })
-  date: string;
-
-  @IsString()
-  @ApiProperty({
-    description: 'Article introduction.',
-    example: 'Powered by Node.js + Nest.js + MongoDB + Mongoose.',
-  })
   summary: string;
 
   @IsString()
-  @ApiProperty({
-    description: 'Article content.',
-    example: 'ASQQWASASAASZAQWQWQWSDDWQWSASASASSAQQWKJKLJHOIHJNB',
-  })
   content: string;
 
   @IsString()
-  @ApiProperty({
-    description: 'Article Cover Image.',
-    example: 'https://xiaoyou66.com/static/image/background/img366.jpg',
-  })
+  @IsNotEmpty()
   coverUrl: string;
-  // metadata: ArticleMetadataDto;
-}
 
-export class ArticleMetadataDto {
-  @IsNumber()
-  views: number;
+  releasedAt?: Date;
 
-  @IsNumber()
-  likes: number;
-
-  @IsNumber()
-  comments: number;
+  updatedAt?: Date;
 }

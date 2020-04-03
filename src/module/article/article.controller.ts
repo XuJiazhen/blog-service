@@ -18,7 +18,6 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Get()
-  // @Roles('admin')
   @ApiOperation({ summary: 'Get all articles.' })
   public getArticles() {
     return this.articleService.getArticles();
