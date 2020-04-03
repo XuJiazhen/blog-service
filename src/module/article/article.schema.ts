@@ -18,6 +18,8 @@ export const ArticleSchema = new Mongoose.Schema({
   // 内容
   content: { type: String, required: true },
 
+  // 封面图片地址
+  coverUrl: { type: String, required: true },
   // // 发布日期
   // releasedAt: { type: Date, default: Date.now },
 

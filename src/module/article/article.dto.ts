@@ -44,6 +44,12 @@ export class ArticleInfoDto {
   })
   content: string;
 
+  @IsString()
+  @ApiProperty({
+    description: 'Article Cover Image.',
+    example: 'https://xiaoyou66.com/static/image/background/img366.jpg',
+  })
+  coverUrl: string;
   // metadata: ArticleMetadataDto;
 }
 
