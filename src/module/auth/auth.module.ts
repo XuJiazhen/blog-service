@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthSchema } from './auth.schema';
 import { md5Decode } from 'src/utils/auth';
+import { ConfigService } from '../config/config.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Auth', schema: AuthSchema }])],
@@ -11,15 +12,21 @@ import { md5Decode } from 'src/utils/auth';
   providers: [AuthService],
 })
 export class AuthModule implements OnModuleInit {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly config: ConfigService,
+  ) {}
 
   private async adminInit() {
-    const auth = await this.authService.findAdminInfo({ username: 'Admin' });
+    const auth = await this.authService.findAdminInfo({
+      username: this.config.DEFAULT_USERNAME,
+    });
 
     if (!auth) {
-      const password = md5Decode('123321');
+      const username = this.config.DEFAULT_USERNAME;
+      const password = md5Decode(this.config.DEFAULT_PWD);
 
-      await this.authService.createAdmin({ username: 'Admin', password });
+      await this.authService.createAdmin({ username, password });
     }
   }
 

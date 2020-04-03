@@ -17,6 +17,8 @@ export class ConfigService {
   private validateInput(envConfig: EnvConfig): EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       MONGO_URL: Joi.string().required(),
+      DEFAULT_USERNAME: Joi.string().required(),
+      DEFAULT_PWD: Joi.string().required(),
     });
     const { error, value: ValidatedEnvConfig } = envVarsSchema.validate(
       envConfig,
@@ -29,5 +31,13 @@ export class ConfigService {
 
   public get MONGO_URL(): string {
     return this.envConfig.MONGO_URL;
+  }
+
+  public get DEFAULT_USERNAME(): string {
+    return this.envConfig.DEFAULT_USERNAME;
+  }
+
+  public get DEFAULT_PWD(): string {
+    return this.envConfig.DEFAULT_PWD;
   }
 }
