@@ -12,6 +12,7 @@ import { RolesGuard } from './guards/roles.guard';
     MongooseModule.forRoot('mongodb://localhost/service', {
       useFindAndModify: true,
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     }),
     ArticleModule,
     ConfigModule,

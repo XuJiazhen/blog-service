@@ -14,9 +14,4 @@ export class AuthService {
   public async findAdminInfo(adminInfo?: AdminInfoDto) {
     return await this.authModel.findOne({ ...adminInfo });
   }
-
-  // public async updateAdminInfo() {
-  //   const result = await this.authModel.findOne();
-  //   return result;
-  // }
 }
