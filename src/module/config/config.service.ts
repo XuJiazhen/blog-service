@@ -19,6 +19,8 @@ export class ConfigService {
       MONGO_URL: Joi.string().required(),
       DEFAULT_USERNAME: Joi.string().required(),
       DEFAULT_PWD: Joi.string().required(),
+
+      APP_PORT: Joi.number().required(),
     });
     const { error, value: ValidatedEnvConfig } = envVarsSchema.validate(
       envConfig,
@@ -40,4 +42,14 @@ export class ConfigService {
   public get DEFAULT_PWD(): string {
     return this.envConfig.DEFAULT_PWD;
   }
+
+  public get APP_PORT(): number {
+    return Number(this.envConfig.APP_PORT);
+  }
 }
+
+const config = new ConfigService(
+  `${process.env.NODE_ENV || 'development'}.env`,
+);
+
+export { config };

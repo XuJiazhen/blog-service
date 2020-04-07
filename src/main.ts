@@ -4,6 +4,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
+import { config } from './module/config/config.service';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -34,6 +36,10 @@ async function bootstrap() {
       max: 100, // limit each IP to 100 requests per windowMs
     }),
   );
-  await app.listen(3000);
+
+  const currentPort =
+    process.env.NODE_ENV === 'development' ? config.APP_PORT : 80;
+
+  await app.listen(currentPort);
 }
 bootstrap();
