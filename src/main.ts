@@ -41,5 +41,7 @@ async function bootstrap() {
     process.env.NODE_ENV === 'development' ? config.APP_PORT : 80;
 
   await app.listen(currentPort);
+
+  console.log(`Server listening at port:${currentPort}`);
 }
 bootstrap();
