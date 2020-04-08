@@ -37,11 +37,8 @@ async function bootstrap() {
     }),
   );
 
-  const currentPort =
-    process.env.NODE_ENV === 'development' ? config.APP_PORT : 80;
+  await app.listen(config.APP_PORT);
 
-  await app.listen(currentPort);
-
-  console.log(`Server listening at port:${currentPort}`);
+  console.log(`Server listening at port:${config.APP_PORT}`);
 }
 bootstrap();
