@@ -6,10 +6,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './module/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
+import { config } from './module/config/config.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/service', {
+    MongooseModule.forRoot(config.MONGO_URL, {
       useFindAndModify: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
