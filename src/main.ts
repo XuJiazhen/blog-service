@@ -37,8 +37,8 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(config.APP_PORT);
-
-  console.log(`Server listening at port:${config.APP_PORT}`);
+  await app.listen(config.APP_PORT, '0.0.0.0', () => {
+    console.log(`Server listening at port:${config.APP_PORT}`);
+  });
 }
 bootstrap();
