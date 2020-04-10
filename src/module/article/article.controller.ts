@@ -30,14 +30,14 @@ export class ArticleController {
   }
 
   @Post()
-  @Roles('admin')
+  @Roles('xujiazhen')
   @ApiOperation({ summary: 'Create an article.' })
   public createArticle(@Body() articleInfo: ArticleInfoDto) {
     return this.articleService.createArticle(articleInfo);
   }
 
   @Put(':id')
-  @Roles('admin')
+  @Roles('xujiazhen')
   @ApiOperation({ summary: 'Update an article by ID.' })
   public updateArticle(
     @Param('id') id: string,
@@ -47,7 +47,7 @@ export class ArticleController {
   }
 
   @Delete(':id')
-  @Roles('admin')
+  @Roles('xujiazhen')
   @ApiOperation({ summary: 'Delete an article by ID.' })
   public deleteArticle(@Param('id') id: string) {
     return this.articleService.deleteArticle(id);
