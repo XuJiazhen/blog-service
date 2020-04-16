@@ -7,6 +7,7 @@ import { AuthModule } from './module/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
 import { config } from './module/config/config.service';
+import { CommentsModule } from './module/comments/comments.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { config } from './module/config/config.service';
     ArticleModule,
     ConfigModule,
     AuthModule,
+    CommentsModule,
   ],
   providers: [
     AppService,
