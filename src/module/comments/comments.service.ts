@@ -10,22 +10,20 @@ export class CommentsService {
     @InjectModel('Comments') private readonly commentsModel: Model<Comments>,
   ) {}
 
-  public async getAllComments() {
-    const res = await this.commentsModel.find();
+  public async getCommentsByArticleID(id) {
+    const res = await this.commentsModel
+      .find({ articleId: id })
+      .sort({ publishedAt: -1 });
     return res;
   }
 
   public async createComment(commentInfo: CommentsInfoDto) {
     const res = await this.commentsModel.create(commentInfo);
-    return res && { success: true };
+    return res;
   }
 
-  public async updateComment(id: number, replyList: ReplyListDto) {
-    const res = await this.commentsModel.findOneAndUpdate(
-      { userId: id },
-      replyList,
-      { new: true },
-    );
-    return res;
+  public async updateComment(replyList: ReplyListDto) {
+    console.log(replyList);
+    return { success: true };
   }
 }

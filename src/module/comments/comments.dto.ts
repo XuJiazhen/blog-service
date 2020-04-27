@@ -6,6 +6,7 @@ export class CommentsInfoDto {
   content: string;
   likes: number;
   replyList?: object[];
+  publishedAt?: Date;
 }
 
 export class ReplyListDto {
