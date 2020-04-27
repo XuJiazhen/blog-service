@@ -22,20 +22,12 @@ export class ArticleService {
 
   public async createArticle(articleInfo: ArticleInfoDto) {
     const res = await this.articleModel.create(articleInfo);
-    return (
-      res && {
-        success: true,
-      }
-    );
+    return res && { success: true };
   }
 
   public async updateArticle(id: string, articleInfo: ArticleInfoDto) {
     const res = await this.articleModel.findByIdAndUpdate(id, articleInfo);
-    return (
-      res && {
-        success: true,
-      }
-    );
+    return res && { success: true };
   }
 
   public async deleteArticle(id: string) {

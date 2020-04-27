@@ -46,7 +46,7 @@ export class ArticleController {
     return this.articleService.updateArticle(id, articleInfo);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   @Roles('xujiazhen')
   @ApiOperation({ summary: 'Delete an article by ID.' })
   public deleteArticle(@Param('id') id: string) {
