@@ -10,9 +10,10 @@ export class CommentsInfoDto {
 }
 
 export class ReplyListDto {
+  id: string;
   content: string;
   author: string;
-  userId: number;
+  toAuthor: string;
   selfId: number;
 }
 

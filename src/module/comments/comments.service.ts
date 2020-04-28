@@ -23,7 +23,13 @@ export class CommentsService {
   }
 
   public async updateComment(replyList: ReplyListDto) {
+    const res = await this.commentsModel.findOneAndUpdate(
+      { _id: replyList.id },
+      { $push: { replyList: replyList } },
+      { new: true },
+    );
     console.log(replyList);
-    return { success: true };
+
+    return res;
   }
 }
