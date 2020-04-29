@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CommentsInfoDto, ReplyListDto } from './comments.dto';
+import { CommentsInfoDto, ReplyListDto, LikeInfoDto } from './comments.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Comments } from './comments.interface';
@@ -28,8 +28,26 @@ export class CommentsService {
       { $push: { replyList: replyList } },
       { new: true },
     );
-    console.log(replyList);
-
     return res;
+  }
+
+  public async likeComment(likeInfo: LikeInfoDto) {
+    if (likeInfo.type === 1) {
+      const res = await this.commentsModel.findOneAndUpdate(
+        { _id: likeInfo.id },
+        { $inc: { likes: 1 } },
+        { new: true },
+      );
+
+      return res;
+    } else if (likeInfo.type === 0) {
+      const res = await this.commentsModel.findOneAndUpdate(
+        { _id: likeInfo.sId, 'replyList._id': likeInfo.id },
+        { $inc: { 'replyList.$.likes': 1 } },
+        { new: true },
+      );
+
+      return res;
+    }
   }
 }

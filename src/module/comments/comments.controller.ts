@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Put, Get, Param } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-import { CommentsInfoDto, ReplyListDto } from './comments.dto';
+import { CommentsInfoDto, ReplyListDto, LikeInfoDto } from './comments.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('comments')
@@ -24,5 +24,11 @@ export class CommentsController {
   @ApiOperation({ summary: 'Update comment.' })
   public updateComment(@Body() replyList: ReplyListDto) {
     return this.commentsService.updateComment(replyList);
+  }
+
+  @Put('like')
+  @ApiOperation({ summary: 'Like comment.' })
+  public likeComment(@Body() likeInfo: LikeInfoDto) {
+    return this.commentsService.likeComment(likeInfo);
   }
 }

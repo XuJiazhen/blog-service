@@ -1,13 +1,33 @@
 import * as Mongoose from 'mongoose';
 
-export const CommentsSchema = new Mongoose.Schema({
-  // 一级评论 ID
-  userId: { type: Number, required: true },
+export const ReplyList = new Mongoose.Schema({
+  // 父级 ID
+  id: { type: String, required: true },
 
+  // 评论者
+  author: { type: String, required: true },
+
+  // 被评论者
+  toAuthor: { type: String, required: true },
+
+  // 内容
+  content: { type: String, required: true },
+
+  // 被赞数
+  likes: { type: Number, default: 0 },
+
+  // 评论日期
+  commentAt: { type: Date, default: Date.now() },
+
+  // 更新日期
+  updatedAt: { type: Date, default: Date.now() },
+});
+
+export const CommentsSchema = new Mongoose.Schema({
   // 所在文章 ID
   articleId: { type: String, required: true },
 
-  // 评论者姓名
+  // 评论者
   author: { type: String, required: true },
 
   // 评论者邮箱
@@ -17,7 +37,7 @@ export const CommentsSchema = new Mongoose.Schema({
   content: { type: String, required: true },
 
   // 被赞数
-  likes: { type: Number, required: true },
+  likes: { type: Number, default: 0 },
 
   // 发表日期
   publishedAt: { type: Date, default: Date.now() },
@@ -26,5 +46,5 @@ export const CommentsSchema = new Mongoose.Schema({
   updatedAt: { type: Date, default: Date.now() },
 
   // 评论二级回复者
-  replyList: { type: Array },
+  replyList: [ReplyList],
 });
