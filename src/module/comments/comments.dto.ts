@@ -19,6 +19,7 @@ export class ReplyDataDto {
   content: string;
   queryId: number;
   commentAt: number;
+  type?: number;
   likes?: number;
 }
 

@@ -13,6 +13,8 @@ export const ReplyData = new Mongoose.Schema({
   // 查询 ID
   queryId: { type: Number, required: true },
 
+  // 请求来源类型：0 子级评论，1 父级评论
+
   // 被赞数
   likes: { type: Number, default: 0 },
 
