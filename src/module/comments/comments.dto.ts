@@ -3,6 +3,7 @@ export class CommentsInfoDto {
   author: string;
   email: string;
   content: string;
+  publishedAt: number;
   replyList?: ReplyListDto;
   likes?: number;
 }
@@ -17,6 +18,7 @@ export class ReplyDataDto {
   toAuthor: string;
   content: string;
   queryId: number;
+  commentAt: number;
   likes?: number;
 }
 

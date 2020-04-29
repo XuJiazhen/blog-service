@@ -17,7 +17,7 @@ export const ReplyData = new Mongoose.Schema({
   likes: { type: Number, default: 0 },
 
   // 评论日期
-  commentAt: { type: Date, default: Date.now() },
+  commentAt: { type: Number },
 
   // 更新日期
   updatedAt: { type: Date, default: Date.now() },
@@ -45,7 +45,7 @@ export const CommentsSchema = new Mongoose.Schema({
   likes: { type: Number, default: 0 },
 
   // 发表日期
-  publishedAt: { type: Date, default: Date.now() },
+  publishedAt: { type: Number },
 
   // 修改日期
   updatedAt: { type: Date, default: Date.now() },
