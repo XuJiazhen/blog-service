@@ -17,18 +17,35 @@ export class CommentsService {
     return res;
   }
 
+  public async getCommentById(id) {
+    const res = await this.commentsModel.findById(id);
+    return res;
+  }
+
   public async createComment(commentInfo: CommentsInfoDto) {
     const res = await this.commentsModel.create(commentInfo);
     return res;
   }
 
   public async updateComment(replyList: ReplyListDto) {
-    const res = await this.commentsModel.findOneAndUpdate(
+    let res = await this.commentsModel.findOneAndUpdate(
       { _id: replyList.id },
-      { $push: { replyList: replyList } },
+      {
+        $set: { 'replyList.id': replyList.id },
+        $push: { 'replyList.data': replyList.data },
+      },
       { new: true },
     );
-    return res;
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    res = res.replyList.data.find(comment => {
+      return Object.is(comment.queryId, replyList.data.queryId);
+    });
+    return {
+      id: replyList.id,
+      data: res,
+    };
   }
 
   public async likeComment(likeInfo: LikeInfoDto) {
@@ -42,10 +59,16 @@ export class CommentsService {
       return res;
     } else if (likeInfo.type === 0) {
       const res = await this.commentsModel.findOneAndUpdate(
-        { _id: likeInfo.sId, 'replyList._id': likeInfo.id },
-        { $inc: { 'replyList.$.likes': 1 } },
+        { _id: likeInfo.sId, 'replyList.data._id': likeInfo.id },
+        { $inc: { 'replyList.data.$.likes': 1 } },
         { new: true },
       );
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      // res = res.replyList.data.find(comment => {
+      //   return Object.is(String(comment._id), String(likeInfo.id));
+      // });
 
       return res;
     }

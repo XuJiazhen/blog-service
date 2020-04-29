@@ -8,10 +8,15 @@ export class CommentsInfoDto {
 }
 
 export class ReplyListDto {
-  id: string;
+  id?: string;
+  data?: ReplyDataDto;
+}
+
+export class ReplyDataDto {
   author: string;
   toAuthor: string;
   content: string;
+  queryId: number;
   likes?: number;
 }
 
@@ -20,5 +25,3 @@ export class LikeInfoDto {
   sId?: string;
   type: number;
 }
-
-export class UpdateCommentDto {}

@@ -1,9 +1,6 @@
 import * as Mongoose from 'mongoose';
 
-export const ReplyList = new Mongoose.Schema({
-  // 父级 ID
-  id: { type: String, required: true },
-
+export const ReplyData = new Mongoose.Schema({
   // 评论者
   author: { type: String, required: true },
 
@@ -13,6 +10,9 @@ export const ReplyList = new Mongoose.Schema({
   // 内容
   content: { type: String, required: true },
 
+  // 查询 ID
+  queryId: { type: Number, required: true },
+
   // 被赞数
   likes: { type: Number, default: 0 },
 
@@ -21,6 +21,11 @@ export const ReplyList = new Mongoose.Schema({
 
   // 更新日期
   updatedAt: { type: Date, default: Date.now() },
+});
+
+export const ReplyList = new Mongoose.Schema({
+  id: { type: String },
+  data: [ReplyData],
 });
 
 export const CommentsSchema = new Mongoose.Schema({
@@ -46,5 +51,5 @@ export const CommentsSchema = new Mongoose.Schema({
   updatedAt: { type: Date, default: Date.now() },
 
   // 评论二级回复者
-  replyList: [ReplyList],
+  replyList: ReplyList,
 });
