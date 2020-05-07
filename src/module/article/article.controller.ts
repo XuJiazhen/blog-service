@@ -12,7 +12,7 @@ import { ArticleInfoDto } from './article.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/decorator/roles.decorator';
 
-@Controller('article')
+@Controller('/api/article')
 @ApiTags('Article')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}

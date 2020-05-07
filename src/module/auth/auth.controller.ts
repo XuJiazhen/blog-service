@@ -4,7 +4,7 @@ import { AdminDto } from './auth.dto';
 import { md5Decode, createToken } from 'src/utils/auth';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
-@Controller('auth')
+@Controller('/api')
 @ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

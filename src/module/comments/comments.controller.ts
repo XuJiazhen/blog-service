@@ -3,7 +3,7 @@ import { CommentsService } from './comments.service';
 import { CommentsInfoDto, ReplyListDto, LikeInfoDto } from './comments.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller('comments')
+@Controller('/api/comments')
 @ApiTags('Comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
