@@ -34,4 +34,13 @@ export class ArticleService {
     const res = await this.articleModel.findByIdAndRemove(id);
     return res && { success: true };
   }
+
+  public async likeArticle(id: string) {
+    const res = await this.articleModel.findOneAndUpdate(
+      { _id: id },
+      { $inc: { likes: 1 } },
+      { new: true },
+    );
+    return res;
+  }
 }

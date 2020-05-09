@@ -16,6 +16,9 @@ export const ArticleSchema = new Mongoose.Schema({
   // 封面图片地址
   coverUrl: { type: String, required: true },
 
+  // 被赞数
+  likes: { type: Number, default: 0 },
+
   // 发布日期
   releasedAt: { type: Date, default: Date.now },
 

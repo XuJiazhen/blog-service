@@ -46,10 +46,16 @@ export class ArticleController {
     return this.articleService.updateArticle(id, articleInfo);
   }
 
-  @Delete('delete/:id')
+  @Delete(':id')
   @Roles('xujiazhen')
   @ApiOperation({ summary: 'Delete an article by ID.' })
   public deleteArticle(@Param('id') id: string) {
     return this.articleService.deleteArticle(id);
+  }
+
+  @Put('like/:id')
+  @ApiOperation({ summary: 'Like Article.' })
+  public likeArticle(@Param('id') id: string) {
+    return this.articleService.likeArticle(id);
   }
 }
