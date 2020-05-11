@@ -24,7 +24,7 @@ async function bootstrap() {
   // 开启跨域
   app.enableCors({
     credentials: true,
-    origin: ['http://xujiazhen.website', 'http://admin.xujiazhen.website'],
+    origin: ['https://xujiazhen.website', 'https://admin.xujiazhen.website'],
   });
 
   // 使用 Helmet 设置安全相关的 HTTP 头
