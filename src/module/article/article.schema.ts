@@ -19,6 +19,9 @@ export const ArticleSchema = new Mongoose.Schema({
   // 被赞数
   likes: { type: Number, default: 0 },
 
+  // 评论数
+  cmts: { type: Number, default: 0 },
+
   // 发布日期
   releasedAt: { type: Date, default: Date.now },
 

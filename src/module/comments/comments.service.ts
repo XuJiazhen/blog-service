@@ -3,11 +3,13 @@ import { CommentsInfoDto, ReplyListDto, LikeInfoDto } from './comments.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Comments } from './comments.interface';
+import { ArticleService } from '../article/article.service';
 
 @Injectable()
 export class CommentsService {
   constructor(
     @InjectModel('Comments') private readonly commentsModel: Model<Comments>,
+    private readonly articleService: ArticleService,
   ) {}
 
   public async getCommentsByArticleID(id) {
@@ -72,5 +74,14 @@ export class CommentsService {
 
       return res;
     }
+  }
+
+  public async updateArticleCmtCount(id: string) {
+    if (id) {
+      const comments = await this.getCommentsByArticleID(id);
+      const count = comments.length;
+      this.articleService.updateArticleCmtCount(id, count);
+    }
+    return id;
   }
 }

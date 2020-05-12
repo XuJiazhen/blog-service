@@ -16,8 +16,10 @@ export class CommentsController {
 
   @Post('create')
   @ApiOperation({ summary: 'Create comment.' })
-  public createComment(@Body() commentInfo: CommentsInfoDto) {
-    return this.commentsService.createComment(commentInfo);
+  public async createComment(@Body() commentInfo: CommentsInfoDto) {
+    const ret = await this.commentsService.createComment(commentInfo);
+    this.commentsService.updateArticleCmtCount(commentInfo.articleId);
+    return ret;
   }
 
   @Put('update')

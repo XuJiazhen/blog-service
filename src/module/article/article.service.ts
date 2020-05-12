@@ -43,4 +43,13 @@ export class ArticleService {
     );
     return res;
   }
+
+  public async updateArticleCmtCount(id: string, count: number) {
+    const res = await this.articleModel.findOneAndUpdate(
+      { _id: id },
+      { $set: { cmts: count } },
+      { new: true },
+    );
+    return res;
+  }
 }
