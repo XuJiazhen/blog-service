@@ -2,13 +2,13 @@ import * as Mongoose from 'mongoose';
 
 export const ReplyData = new Mongoose.Schema({
   // 评论者
-  author: { type: String, required: true },
+  author: { type: String, required: true, maxlength: 12 },
 
   // 被评论者
-  toAuthor: { type: String, required: true },
+  toAuthor: { type: String, required: true, maxlength: 12 },
 
   // 内容
-  content: { type: String, required: true },
+  content: { type: String, required: true, maxlength: 1000 },
 
   // 查询 ID
   queryId: { type: Number, required: true },
@@ -35,13 +35,13 @@ export const CommentsSchema = new Mongoose.Schema({
   articleId: { type: String, required: true },
 
   // 评论者
-  author: { type: String, required: true },
+  author: { type: String, required: true, maxlength: 12 },
 
   // 评论者邮箱
-  email: { type: String, required: true },
+  email: { type: String, required: true, maxlength: 40 },
 
   // 内容
-  content: { type: String, required: true },
+  content: { type: String, required: true, maxlength: 1000 },
 
   // 被赞数
   likes: { type: Number, default: 0 },
